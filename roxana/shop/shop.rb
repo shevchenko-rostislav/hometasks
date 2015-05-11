@@ -3,18 +3,15 @@ class Shop
 
   def initialize(name_shop)
     @name_shop = name_shop
+    @items ||= []
   end
 
   def add(item)
-    @items ||= []
     @items << item
-    @hash = {name_shop => @items}
   end
 
   def batch_add(*item)
-    @items ||= []
     @items += item
-    @hash = {@name_shop => @items}
   end
 
   def sort(order, order_type) #"name" or "price", into ascending order - asc, descending - "desc"
