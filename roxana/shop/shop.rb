@@ -28,7 +28,7 @@ class Shop
   end
 
   def remove(name)
-    @items.delete(@items.find {|item| item.name_item == "aaaaa"})
+    @items.delete(@items.find {|item| item.name_item == name})
   end
 
   def remove_qua(name_item, number)
