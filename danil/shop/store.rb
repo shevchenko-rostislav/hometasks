@@ -1,5 +1,7 @@
 class Store
 
+	attr_accessor :store_name
+
 	def initialize name
 		@store_name = name
 
@@ -17,7 +19,7 @@ class Store
 	end
 
 	def getItemsByCategory category
-		@store_items.select { |key, value| k.category == category }.keys
+		@store_items.select { |key, value| key.item_category == category }.keys
 	end
 
 	def removeItem (item, amount = 1)
@@ -29,17 +31,17 @@ class Store
 		end
 	end
 
-	def getTotalPriceOf item
+	def getTotalPrice
 		totalPrice = 0
-		@store_items.each{ |key, value| totalPrice += key.item_price * @store_items[item] }  #price, multiplied by amount
+		@store_items.each { |key, value| totalPrice += (key.item_price * value) }  #price, multiplied by amount
 		totalPrice
 	end
 
 	def getGoodsOrderedBy order_by
 		if order_by.downcase == "price"
-			@store_items.sort_by! { |key, value| key.item_price }
+			return @store_items.sort_by { |key, value| key.item_price }.to_h
 		elsif order_by.downcase == "name"
-			@store_items.sort_by! { |key, value| key.item_name }
+			return @store_items.sort_by { |key, value| key.item_name.to_sym}.to_h
 		end
 	end
 
@@ -50,15 +52,16 @@ class Store
 	end
 
 	def removeByName (name, amount)
-		foundItem = @store_items.select { |key, value| k.item_name == name }.key
-		removeByObject(foundItem, amount)
+		foundItem = @store_items.select { |key, value| key.item_name == name }
+		removeByObject(foundItem.keys[0], amount)
 	end
 
 	def removeByObject (item, amount)
-		if (amount > @store_items[item])
+		if (amount >= @store_items[item])
 			@store_items.delete(item)
 		else
 			@store_items[item] -= amount
+		end
 	end
 
 	private :checkAmount, :removeByName, :removeByObject

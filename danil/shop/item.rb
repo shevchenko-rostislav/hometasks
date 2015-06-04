@@ -1,11 +1,5 @@
 class Item
 
-	def initialize (name, price)
-		checkName (name)
-		@item_name = name
-		@item_price = price
-	end
-
 	def initialize (name, price, category)
 		checkName (name)
 		@item_name = name
@@ -24,6 +18,7 @@ class Item
 	def checkName name
 		if (name.length < 5)
 			raise "Item's name is too short."
+		end
 	end
 
 	private :checkName

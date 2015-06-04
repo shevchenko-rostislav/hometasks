@@ -1,18 +1,20 @@
 class User
 
-	attr_accessor :nickname, :stores
+	attr_accessor :name, :stores
 
-	def initialize nickname
-		@nickname = nickname
+	def initialize name
+		@name = name
 		@stores = []
 	end
 
 	def createStore name
-		@stores << Store.new(name)
+		newStore = Store.new(name);
+		@stores.push(newStore)
 	end
 
-	def getStoreByName name
-		@stores[name]
+	def getStoreByName storeName
+		selectedStores = @stores.select { |store| store.store_name == storeName }
+		return selectedStores.first
 	end
 
 end
