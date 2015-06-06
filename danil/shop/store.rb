@@ -9,54 +9,56 @@ class Store
 		@store_items = Hash.new
 	end
 
-	def addItem (item, amount = 1)
-		checkAmount(amount)
+	def add_item (item, amount = 1)
+		check_amount(amount)
 		@store_items[item] =+ amount
 	end
 
-	def getItems
+	def get_items
 		@store_items.keys
 	end
 
-	def getItemsByCategory category
+	def get_items_by_category category
 		@store_items.select { |key, value| key.item_category == category }.keys
 	end
 
-	def removeItem (item, amount = 1)
-		checkAmount(amount)
+	def remove_item (item, amount = 1)
+		check_amount(amount)
 		if (item.is_a?(String))
-			removeByName(item, amount)
+			remove_by_name(item, amount)
 		else
-			removeByObject(item, amount)
+			remove_by_object(item, amount)
 		end
 	end
 
-	def getTotalPrice
-		totalPrice = 0
-		@store_items.each { |key, value| totalPrice += (key.item_price * value) }  #price, multiplied by amount
-		totalPrice
+	def get_total_price
+		total_price = 0
+		@store_items.each { |key, value| total_price += (key.item_price * value) }  #price, multiplied by amount
+		total_price
 	end
 
-	def getGoodsOrderedBy order_by
+	def get_goods_ordered_by order_by
+		ordered_goods = nil
 		if order_by.downcase == "price"
-			return @store_items.sort_by { |key, value| key.item_price }.to_h
+			ordered_goods = @store_items.sort_by { |key, value| key.item_price }
 		elsif order_by.downcase == "name"
-			return @store_items.sort_by { |key, value| key.item_name.to_sym}.to_h
+			ordered_goods = @store_items.sort_by { |key, value| key.item_name.to_sym }
 		end
+		ordered_goods.to_h
 	end
 
-	def checkAmount amount
+	def check_amount amount
 		if amount < 1
 			raise "Amount of items added can not be less or equal to zero"
 		end
 	end
 
-	def removeByName (name, amount)
-		foundItem = @store_items.select { |key, value| key.item_name == name }
-		removeByObject(foundItem.keys[0], amount)
+	def remove_by_name (name, amount)
+		found_item = @store_items.select { |key, value| key.item_name == name }
+		remove_by_object(found_item.keys[0], amount)
 	end
 
-	def removeByObject (item, amount)
+	def remove_by_object (item, amount)
 		if (amount >= @store_items[item])
 			@store_items.delete(item)
 		else
@@ -64,7 +66,7 @@ class Store
 		end
 	end
 
-	private :checkAmount, :removeByName, :removeByObject
+	private :check_amount, :remove_by_name, :remove_by_object
 
 
 end

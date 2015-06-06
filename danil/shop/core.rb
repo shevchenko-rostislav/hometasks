@@ -1,82 +1,72 @@
-require 'user'
-require 'item'
-require 'store'
+require './user'
+require './item'
+require './store'
 
 class Application
 
 	def initialize
-		@itemsBuffer = []
-		@user = nil
-		@randomStore_index = 1
+		@items_buffer = []
+		@user = User.new("user")
 	end
 
-	attr_accessor :itemsBuffer, :user
+	attr_accessor :items_buffer, :user
 
-	def register name
-		@user = User.new(gets.chomp)
+	def create_store name
+		@user.create_store(name)
 	end
 
-
-	def createStore name
-		@user.createStore(name)
+	def create_item (name, price, category)
+		@items_buffer << Item.new(name, price, category)
 	end
 
-	def createItem (name, price, category)
-		@itemsBuffer << Item.new(name, price, category)
+	def add_item_to_store (item, store_name, amount)
+		@user.get_store_by_name(store_name).add_item(item, amount)
 	end
 
-
-	def addItemToStore (item, storeName, amount)
-		@user.getStoreByName(storeName).addItem(item, amount)
-	end
-
-	def addItemsToStore(storeName, *items)
-		items.each { |item| @user.getStoreByName(storeName).addItem(item) }
+	def add_items_to_store(store_name, *items)
+		items.each { |item| @user.get_store_by_name(store_name).add_item(item) }
 	end
 				
-	def showStores
+	def show_stores
 		@user.stores.each { |store| puts "#{store.store_name}" }
 	end
 
-	def showItemsFrom storeName
-		@user.getStoreByName(storeName).getItems.each { |item| puts "#{item.item_name}"  }
+	def show_items_from store_name
+		@user.get_store_by_name(store_name).get_items.each { |item| puts "#{item.item_name}"  }
 	end
 	
-	def removeItem (item, storeName, amount)
-		@user.getStoreByName(storeName).removeItem(item, amount)
+	def remove_item (item, store_name, amount)
+		@user.get_store_by_name(store_name).remove_item(item, amount)
 	end
 
-	def removeItemByName (name, storeName, amount)
-		@user.getStoreByName(storeName).removeItem(name, amount)
+	def remove_item_by_name (name, store_name, amount)
+		@user.get_store_by_name(store_name).remove_item(name, amount)
 	end
 
-	def getTotalCost storeName
-		@user.getStoreByName(storeName).getTotalPrice
+	def get_total_cost store_name
+		@user.get_store_by_name(store_name).get_total_price
 	end
 
-	def getItemsByCategory (categoryName, storeName)
-		@user.getStoreByName(storeName).getItemsByCategory(categoryName)
+	def get_items_by_category (category_name, store_name)
+		@user.get_store_by_name(store_name).get_items_by_category(category_name)
 	end
 
-	def orderGoodsByPrice (storeName)
-		@user.getStoreByName(storeName).getGoodsOrderedBy("price")
+	def order_goods_by_price (store_name)
+		@user.get_store_by_name(store_name).get_goods_ordered_by("price")
 	end
 
-	def orderGoodsByName (storeName)
-		@user.getStoreByName(storeName).getGoodsOrderedBy("name")
+	def order_goods_by_name (store_name)
+		@user.get_store_by_name(store_name).get_goods_ordered_by("name")
 	end
 
-	def generateRandomStore
-		@user ||= User.new("tempUser")
-		@user.createStore("randomStore ##{@randomStore_index}")
+	def generate_random_store
+		@user.create_store("randomStore")
 		random = Random.new()
-
 		20.times do 
-			newItem = Item.new("itemName #{random.rand(100)}", random.rand*100, "category")
-			@user.getStoreByName("randomStore ##{@randomStore_index}").addItem(newItem)
+			new_item = Item.new("itemName #{random.rand(100)}", random.rand*100, "category")
+			@user.get_store_by_name("randomStore").add_item(new_item)
 
 		end
-		@randomStore_index += 1
 	end
 end
 

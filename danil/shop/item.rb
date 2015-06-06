@@ -1,11 +1,11 @@
 class Item
 
 	def initialize (name, price, category)
-		checkName (name)
+		check_name (name)
 		@item_name = name
 		@item_price = price
 		@item_category = category
-		
+
 	end
 
 	attr_accessor :item_name,  :item_price
@@ -16,11 +16,11 @@ class Item
 		@item_name
 	end
 
-	def checkName name
+	def check_name name
 		if (name.length < 5)
 			raise "Item's name is too short."
 		end
 	end
 
-	private :checkName
+	private :check_name
 end
