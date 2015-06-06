@@ -1,6 +1,6 @@
-require './user.rb'
-require './item.rb'
-require './store.rb'
+require 'user'
+require 'item'
+require 'store'
 
 class Application
 

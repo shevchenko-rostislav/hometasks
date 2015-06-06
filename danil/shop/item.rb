@@ -5,6 +5,7 @@ class Item
 		@item_name = name
 		@item_price = price
 		@item_category = category
+		
 	end
 
 	attr_accessor :item_name,  :item_price
