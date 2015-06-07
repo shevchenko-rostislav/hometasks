@@ -7,7 +7,7 @@ class Store
   end
 end
 
-  def add item
+  def add(item)
     @items << item
   end
 
