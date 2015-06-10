@@ -1,26 +1,25 @@
 class Item
 
-	def initialize (name, price, category)
-		check_name (name)
-		@item_name = name
-		@item_price = price
-		@item_category = category
+  def initialize (name, price, category)
+    check_name (name)
+    @item_name = name
+    @item_price = price
+    @item_category = category
+  end
 
-	end
-
-	attr_accessor :item_name,  :item_price
-	attr_reader :item_category
+  attr_accessor :item_name,  :item_price
+  attr_reader :item_category
 
 
-	def to_s
-		@item_name
-	end
+  def to_s
+    @item_name
+  end
 
-	def check_name name
-		if (name.length < 5)
-			raise "Item's name is too short."
-		end
-	end
+  def check_name name
+    if (name.length < 5)
+      raise "Item's name is too short."
+    end
+  end
 
-	private :check_name
+  private :check_name
 end
