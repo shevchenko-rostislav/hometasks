@@ -7,8 +7,7 @@ class Item
     @item_category = category
   end
 
-  attr_accessor :item_name,  :item_price
-  attr_reader :item_category
+  attr_accessor :item_name,  :item_price, :item_category
 
 
   def to_s
@@ -22,4 +21,5 @@ class Item
   end
 
   private :check_name
+
 end

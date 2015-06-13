@@ -12,7 +12,6 @@ class User
   end
 
   def get_store_by_name store_name
-    selected_stores = @stores.select { |store| store.store_name == store_name }
-    return selected_stores.first
+    selected_stores.find { |store| store.store_name == store_name}
   end
 end

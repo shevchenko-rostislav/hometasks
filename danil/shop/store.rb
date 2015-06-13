@@ -1,9 +1,9 @@
 class Store
 
-  attr_accessor :store_name
+  attr_accessor :name
 
   def initialize name
-    @store_name = name
+    @name = name
 		#main container for store items. Format => item_name : item_amount
     @store_items = Hash.new
   end
@@ -46,26 +46,24 @@ class Store
     ordered_goods.to_h
   end
 
-  def check_amount amount
-    if amount < 1
-      raise "Amount of items added can not be less or equal to zero"
+  private 
+    def check_amount amount
+      if amount < 1
+        raise "Amount of items added can not be less or equal to zero"
+      end
     end
-  end
 
-  def remove_by_name (name, amount)
-    found_item = @store_items.select { |key, value| key.item_name == name }
-    remove_by_object(found_item.keys[0], amount)
-  end
-
-  def remove_by_object (item, amount)
-    if (amount >= @store_items[item])
-      @store_items.delete(item)
-    else
-      @store_items[item] -= amount
+    def remove_by_name (name, amount)
+      found_item = @store_items.select { |key, value| key.item_name == name }
+      remove_by_object(found_item.keys[0], amount)
     end
-  end
 
-  private :check_amount, :remove_by_name, :remove_by_object
-
+    def remove_by_object (item, amount)
+      if (amount >= @store_items[item])
+        @store_items.delete(item)
+      else
+        @store_items[item] -= amount
+      end
+    end
 
 end

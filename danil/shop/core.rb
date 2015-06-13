@@ -66,7 +66,7 @@ class Application
       new_item = Item.new("itemName #{random.rand(100)}", random.rand*100, "category")
       @user.get_store_by_name("randomStore").add_item(new_item)
     end
+    
   end
+  
 end
-
-
