@@ -40,5 +40,14 @@ class Store
     total_price = item.sum do |item|
     item.quantity * item.price
   end
+
+
+  batch = []
+
+  batch << {:list => List.new(:list => "Discount products"),
+          :category => Category.new(:cateory => 
+           "Laptops")}
+
+  Store.collection.insert(batch)
 end
 end
