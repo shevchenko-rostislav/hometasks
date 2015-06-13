@@ -5,7 +5,6 @@ class Store
     @name = name
     @list = list
   end
-end
 
   def add(item)
     @items << item
@@ -28,3 +27,14 @@ end
     end
     end
   end
+
+  def show_list(items) 
+    show_list.each {|item| puts item}
+  end
+
+  def total_price(total) 
+    total_price = item.sum do |item|
+    item.quantity * item.price
+  end
+end
+end
