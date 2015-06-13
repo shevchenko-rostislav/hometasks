@@ -28,6 +28,10 @@ class Store
     end
   end
 
+  def delete_item_by_name(item_name)
+    @item.delete_if { |item| item.name == item.name } 
+  end
+
   def show_list(items) 
     show_list.each {|item| puts item}
   end

@@ -7,4 +7,8 @@ class User
   self.profile = Profile.create(:user => self) if self.profile.nil?
   self.profile
   end
+
+  def add_store store
+        @store.push store
+  end
 end
