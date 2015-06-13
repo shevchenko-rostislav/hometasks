@@ -2,7 +2,7 @@ class User
 
   attr_accessor :stores
 
-  def initialize name
+  def initialize
     @stores = []
   end
 
@@ -12,6 +12,7 @@ class User
   end
 
   def get_store_by_name store_name
-    selected_stores.find { |store| store.store_name == store_name}
+    @stores.find { |store| store.name == store_name}
   end
+
 end
