@@ -9,6 +9,6 @@ class User
   end
 
   def add_store store
-        @store.push store
+  @store.push store
   end
 end
