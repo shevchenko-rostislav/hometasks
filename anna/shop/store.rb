@@ -18,7 +18,7 @@ class Store
     item_to_show = [comp1, comp2, comp3]
     @item.each do |item|
     if item.name == item_name
-    item_to_show << item
+      item_to_show << item
     end
   end
 
@@ -30,7 +30,7 @@ class Store
     item_to_show = [comp1, comp2, comp3]
     @item.each do |item|
     if item.price == price
-    item_to_show << item
+      item_to_show << item
     end
   end
 
@@ -48,6 +48,4 @@ class Store
     item.quantity * item.price
     end
   end
-end
-end
 end
