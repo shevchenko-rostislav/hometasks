@@ -1,9 +1,9 @@
 class Item
-  attr_accessor :item_name, :price, :quantity, :category
+  attr_accessor :name, :price, :quantity, :category
 
-  def initialize item_name, price
-    @item_name = item_name
-    puts "Item should have 5 letters!" if item_name.size < 5
+  def initialize name, price
+    @name = name
+    puts "Item should have 5 letters!" if name.size < 5
     @price = price
     @quantity = quantity
     @category = category
@@ -17,8 +17,7 @@ class Item
     category_to_show = [cat1, cat2, cat3]
     @category.each do |category|
     if category.name == category_name
-    category_to_show << category
+      category_to_show << category
     end
   end
-end
 end
