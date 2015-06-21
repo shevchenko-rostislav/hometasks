@@ -11,6 +11,7 @@ class Store
     check_amount(amount)
     if (@store_items.include?(item))
       @store_items.find { |found_item| found_item.eql? item }.amount += amount
+      puts "found it!"
     else
       item.amount = amount
       @store_items << item
@@ -35,7 +36,7 @@ class Store
   end
 
   def get_total_price
-    @store_items.inject(0){ |total, item| total += item.price }
+    @store_items.inject(0){ |total, item| total += item.price * item.amount}
   end
 
   def get_goods_ordered_by order_by
