@@ -7,14 +7,14 @@ class Shop
   end
 
   def self.random_shop
-    shop = Shop.new("Random shop")
+    shop = Shop.new('Random shop')
 
     5.times do |i|
-        i = Item.new("item-#{i+1}", rand(1000), rand(5) + 1, "cat-#{rand(3)}")
-        shop.add_item(i)
+      i = Item.new("item-#{i + 1}", rand(1000), rand(5) + 1, "cat-#{rand(3)}")
+      shop.add_item(i)
     end
 
-    return shop
+    shop
   end
 
   def info
@@ -26,13 +26,11 @@ class Shop
   end
 
   def remove_item(name, number = nil)
-    if number == nil
+    if number.nil?
       @items.delete_if { |item| item.name == name }
     else
       @items.each do |item|
-        if item.name == name
-          item.number -= number
-        end
+        item.number -= number if item.name == name
       end
     end
   end
@@ -54,11 +52,11 @@ class Shop
 
   def list_items_by(attr)
     if attr == 'name'
-      puts @items.sort { |x,y| x.name <=> y.name }
+      puts @items.sort { |x, y| x.name <=> y.name }
     elsif attr == 'price'
-      puts @items.sort { |x,y| x.price <=> y.price }
+      puts @items.sort { |x, y| x.price <=> y.price }
     else
-      raise "You can sort either by name or price only."
+      fail 'You can sort either by name or price only.'
     end
   end
 
