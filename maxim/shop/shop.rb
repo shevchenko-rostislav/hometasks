@@ -10,7 +10,7 @@ class Shop
     shop = Shop.new("Random shop")
 
     5.times do |i|
-        i = Item.new("item-#{i+1}", rand(1000), rand(5) + 1)
+        i = Item.new("item-#{i+1}", rand(1000), rand(5) + 1, "cat-#{rand(3)}")
         shop.add_item(i)
     end
 
@@ -18,7 +18,7 @@ class Shop
   end
 
   def info
-    "Shop's name: #{name}"
+    "Shop's name: #{@name}"
   end
 
   def add_item(item)
@@ -58,5 +58,11 @@ class Shop
 
   def list_items_by_price
     puts @items.sort { |x,y| x.price <=> y.price }
+  end
+
+  def list_items_by_category(category_name)
+    @items.each do |item|
+      puts item.to_s if item.category == category_name
+    end
   end
 end
