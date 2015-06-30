@@ -1,12 +1,13 @@
 class Item
-  attr_accessor :name, :price
+  attr_accessor :name, :price, :number
 
-  def initialize(name, price)
-    @name  = name
-    @price = price
+  def initialize(name, price, number)
+    @name   = name
+    @price  = price
+    @number = number
   end
 
   def to_s
-    "Item name: #{name}, price: $#{price}."
+    "Item name: #{name}, price: $#{price}, number: #{number}."
   end
 end

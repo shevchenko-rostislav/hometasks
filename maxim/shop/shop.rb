@@ -10,7 +10,7 @@ class Shop
     shop = Shop.new("Random shop")
 
     5.times do |i|
-        i = Item.new("item-#{i+1}", rand(1000))
+        i = Item.new("item-#{i+1}", rand(1000), rand(5) + 1)
         shop.add_item(i)
     end
 
@@ -25,8 +25,16 @@ class Shop
     @items << item
   end
 
-  def remove_item(name)
-    @items.delete_if { |item| item.name == name }
+  def remove_item(name, number = nil)
+    if number == nil
+      @items.delete_if { |item| item.name == name }
+    else
+      @items.each do |item|
+        if item.name == name
+          item.number -= number
+        end
+      end
+    end
   end
 
   def list_items
@@ -39,7 +47,7 @@ class Shop
   def total_cost
     total = 0
     @items.each do |item|
-      total += item.price
+      total += item.price * item.number
     end
     puts "Total cost of all items: $#{total}"
   end
