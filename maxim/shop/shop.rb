@@ -25,6 +25,10 @@ class Shop
     @items << item
   end
 
+  def remove_item(name)
+    @items.delete_if { |item| item.name == name }
+  end
+
   def list_items
     puts @name
     @items.each do |item|
