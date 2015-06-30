@@ -35,4 +35,12 @@ class Shop
       puts item.to_s
     end
   end
+
+  def total_cost
+    total = 0
+    @items.each do |item|
+      total += item.price
+    end
+    puts "Total cost of all items: $#{total}"
+  end
 end
