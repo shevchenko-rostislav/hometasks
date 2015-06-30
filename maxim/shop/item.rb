@@ -2,7 +2,7 @@ class Item
   attr_accessor :name, :price, :number, :category
 
   def initialize(name, price, number, category)
-    @name     = name
+    name.size < 5 ? (raise "Name must be at least 5 symbols long") : @name = name
     @price    = price
     @number   = number
     @category = category

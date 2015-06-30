@@ -52,12 +52,14 @@ class Shop
     puts "Total cost of all items: $#{total}"
   end
 
-  def list_items_by_name
-    puts @items.sort { |x,y| x.name <=> y.name }
-  end
-
-  def list_items_by_price
-    puts @items.sort { |x,y| x.price <=> y.price }
+  def list_items_by(attr)
+    if attr == 'name'
+      puts @items.sort { |x,y| x.name <=> y.name }
+    elsif attr == 'price'
+      puts @items.sort { |x,y| x.price <=> y.price }
+    else
+      raise "You can sort either by name or price only."
+    end
   end
 
   def list_items_by_category(category_name)
