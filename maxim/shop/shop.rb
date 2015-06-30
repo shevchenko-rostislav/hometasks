@@ -51,4 +51,12 @@ class Shop
     end
     puts "Total cost of all items: $#{total}"
   end
+
+  def list_items_by_name
+    puts @items.sort { |x,y| x.name <=> y.name }
+  end
+
+  def list_items_by_price
+    puts @items.sort { |x,y| x.price <=> y.price }
+  end
 end
